@@ -6,8 +6,6 @@ import com.dev.testquest.model.Status;
 import com.dev.testquest.model.Task;
 import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
-
-import com.dev.testquest.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

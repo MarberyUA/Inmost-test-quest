@@ -1,7 +1,6 @@
 package com.dev.testquest;
 
 import com.dev.testquest.config.AppConfig;
-import com.dev.testquest.dao.StatusDao;
 import com.dev.testquest.model.Role;
 import com.dev.testquest.model.Status;
 import com.dev.testquest.model.Task;
