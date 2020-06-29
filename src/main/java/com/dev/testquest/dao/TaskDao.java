@@ -1,5 +1,6 @@
 package com.dev.testquest.dao;
 
+import com.dev.testquest.model.Status;
 import com.dev.testquest.model.Task;
 import java.util.List;
 
@@ -11,4 +12,6 @@ public interface TaskDao {
     void delete(Task task);
 
     List<Task> getAll();
+
+    List<Task> getTasksByStatus(Status status);
 }

@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,8 +26,6 @@ public class User {
     @ManyToMany
     @Column(name = "users_roles")
     private Set<Role> roles = new HashSet<>();
-    @OneToOne
-    private Task tasks;
 
     public User() {
     }
@@ -79,14 +76,6 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public Task getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(Task tasks) {
-        this.tasks = tasks;
     }
 
     @Override

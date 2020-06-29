@@ -18,6 +18,6 @@ public class StatusServiceImpl implements StatusService {
 
     @Override
     public Status getByStatusName(String statusName) {
-        return null;
+        return statusDao.getByStatusName(statusName);
     }
 }

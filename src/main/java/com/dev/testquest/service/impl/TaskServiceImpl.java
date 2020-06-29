@@ -27,23 +27,21 @@ public class TaskServiceImpl implements TaskService {
         User user = userService.findByEmail(userEmail);
         task.setUser(user);
         task = taskDao.create(task);
-        user.setTasks(task);
-        userService.update(user);
         return task;
     }
 
     @Override
     public Task update(Task task) {
-        return null;
+        return taskDao.update(task);
     }
 
     @Override
     public void delete(Task task) {
-
+        taskDao.delete(task);
     }
 
     @Override
     public List<Task> getAll() {
-        return null;
+        return taskDao.getAll();
     }
 }

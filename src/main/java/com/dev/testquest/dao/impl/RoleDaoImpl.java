@@ -47,7 +47,7 @@ public class RoleDaoImpl implements RoleDao {
         }
 
         try (Session session = sessionFactory.openSession()) {
-            String hqlQuery = "FROM roles rl WHERE rl.roleName = :role";
+            String hqlQuery = "FROM Role rl WHERE rl.roleName = :role";
             Query<Role> query = session.createQuery(hqlQuery, Role.class);
             query.setParameter("role", enumRoleName);
             return query.uniqueResult();
