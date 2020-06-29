@@ -1,16 +1,14 @@
 package com.dev.testquest.service.impl;
 
 import com.dev.testquest.dao.TaskDao;
-import com.dev.testquest.model.Status;
 import com.dev.testquest.model.Task;
 import com.dev.testquest.model.User;
 import com.dev.testquest.service.StatusService;
 import com.dev.testquest.service.TaskService;
 import com.dev.testquest.service.UserService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class TaskServiceImpl implements TaskService {

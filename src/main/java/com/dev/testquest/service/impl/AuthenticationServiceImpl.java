@@ -17,7 +17,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public User registration(String name, String email, String password) throws AuthenticationException {
+    public User registration(String name, String email, String password)
+            throws AuthenticationException {
         User user = new User();
         user.setName(name);
         user.setEmail(email);

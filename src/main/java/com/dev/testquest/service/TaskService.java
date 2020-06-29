@@ -1,7 +1,6 @@
 package com.dev.testquest.service;
 
 import com.dev.testquest.model.Task;
-
 import java.util.List;
 
 public interface TaskService {

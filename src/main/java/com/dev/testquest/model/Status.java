@@ -39,7 +39,7 @@ public class Status {
         this.statusName = statusName;
     }
 
-    public enum  StatusName {
+    public enum StatusName {
         View, In_Progress, Done
     }
 }

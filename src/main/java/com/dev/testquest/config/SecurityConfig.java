@@ -2,7 +2,6 @@ package com.dev.testquest.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,17 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .and()
                 .authorizeRequests()
-//                .antMatchers(HttpMethod.POST, "/movies/**").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.GET, "/movies/**").permitAll()
-//                .antMatchers(HttpMethod.GET, "/users/byemail").hasRole("USER")
-//                .antMatchers(HttpMethod.POST, "/register").permitAll()
-//                .antMatchers(HttpMethod.POST, "/cinemahalls/**").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.GET, "/cinemahalls/**").permitAll()
-//                .antMatchers(HttpMethod.POST, "/moviesessions/**").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.GET, "/moviesessions/**").permitAll()
-//                .antMatchers("/inject/**").permitAll()
-//                .antMatchers("/orders/**").hasRole("USER")
-//                .antMatchers("/shoppingcarts/**").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

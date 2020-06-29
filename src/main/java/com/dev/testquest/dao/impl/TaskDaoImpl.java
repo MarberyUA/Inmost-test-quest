@@ -3,15 +3,13 @@ package com.dev.testquest.dao.impl;
 import com.dev.testquest.dao.TaskDao;
 import com.dev.testquest.exception.DataProcessingException;
 import com.dev.testquest.model.Task;
-import com.dev.testquest.model.User;
+import java.util.List;
+import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.criteria.CriteriaQuery;
-import java.util.List;
 
 @Repository
 public class TaskDaoImpl implements TaskDao {
@@ -86,7 +84,8 @@ public class TaskDaoImpl implements TaskDao {
     @Override
     public List<Task> getAll() {
         try (Session session = sessionFactory.openSession()) {
-            CriteriaQuery<Task> criteriaQuery = session.getCriteriaBuilder().createQuery(Task.class);
+            CriteriaQuery<Task> criteriaQuery = session.getCriteriaBuilder()
+                    .createQuery(Task.class);
             criteriaQuery.from(Task.class);
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {

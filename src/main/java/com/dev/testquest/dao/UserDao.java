@@ -1,7 +1,6 @@
 package com.dev.testquest.dao;
 
 import com.dev.testquest.model.User;
-
 import java.util.List;
 
 public interface UserDao {

@@ -2,7 +2,6 @@ package com.dev.testquest.dao.impl;
 
 import com.dev.testquest.dao.StatusDao;
 import com.dev.testquest.exception.DataProcessingException;
-import com.dev.testquest.model.Role;
 import com.dev.testquest.model.Status;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
