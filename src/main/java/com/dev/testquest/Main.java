@@ -19,12 +19,12 @@ public class Main {
         Role role = new Role();
         role.setRoleName(Role.RoleName.USER);
         roleService.add(role);
-        UserService userService = applicationContext.getBean(UserService.class);
         User user = new User();
         user.setName("John");
         user.setEmail("marberymain@gmail.com");
         user.setPassword("1234");
         user.setSurname("Parker");
+        UserService userService = applicationContext.getBean(UserService.class);
         userService.create(user);
         StatusService statusService = applicationContext.getBean(StatusService.class);
         Status status = new Status();
