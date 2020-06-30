@@ -41,7 +41,7 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody AuthenticationLoginRequestDto
+    public ResponseEntity login(@RequestBody @Valid AuthenticationLoginRequestDto
                                             authenticationLoginRequestDto) {
 
         try {
@@ -65,7 +65,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public void register(@Valid @RequestBody AuthenticationRegisterRequestDto
+    public void register(@RequestBody @Valid AuthenticationRegisterRequestDto
                                      authenticationRequestDto)
             throws AuthenticationException {
         User user = authenticationMapper.authenticationRequestDtoToUser(authenticationRequestDto);

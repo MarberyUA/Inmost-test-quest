@@ -1,8 +1,13 @@
 package com.dev.testquest.model.dto.request;
 
+import com.dev.testquest.lib.EmailConstraint;
+import com.dev.testquest.lib.FieldMatchConstraint;
 import javax.validation.constraints.NotNull;
 
+@FieldMatchConstraint(field = "password", fieldMatch = "repeatPassword",
+        message = "Passwords do not match!")
 public class AuthenticationRegisterRequestDto {
+    @EmailConstraint(message = "incorrect email")
     private String email;
     @NotNull(message = "name must not be null")
     private String name;

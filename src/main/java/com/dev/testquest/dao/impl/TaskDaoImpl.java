@@ -4,6 +4,8 @@ import com.dev.testquest.dao.TaskDao;
 import com.dev.testquest.exception.DataProcessingException;
 import com.dev.testquest.model.Status;
 import com.dev.testquest.model.Task;
+
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
@@ -128,6 +130,30 @@ public class TaskDaoImpl implements TaskDao {
             return query.uniqueResult();
         } catch (Exception e) {
             throw new DataProcessingException("Error while getting task by id", e);
+        }
+    }
+
+    @Override
+    public List<Task> getTasksByOldUsers() {
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "FROM Task tk WHERE tk.user.dateCreation != :date";
+            Query<Task> query = session.createQuery(hql);
+            query.setParameter("date", LocalDate.now());
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException("Error while getting task by old users!", e);
+        }
+    }
+
+    @Override
+    public List<Task> getTasksByNewUsers() {
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "FROM Task tk WHERE tk.user.dateCreation = :date";
+            Query<Task> query = session.createQuery(hql);
+            query.setParameter("date", LocalDate.now());
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException("Error while getting task by old users!", e);
         }
     }
 }

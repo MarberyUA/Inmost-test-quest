@@ -5,6 +5,8 @@ import com.dev.testquest.model.dto.request.UserUpdateRequestDto;
 import com.dev.testquest.model.dto.response.UserDetailsResponseDto;
 import com.dev.testquest.model.mapper.UserMapper;
 import com.dev.testquest.service.UserService;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -33,7 +37,7 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/update")
-    public UserDetailsResponseDto update(@RequestBody UserUpdateRequestDto requestDto,
+    public UserDetailsResponseDto update(@RequestBody @Valid UserUpdateRequestDto requestDto,
                                          Authentication authentication) {
         User userToBeUpdated = userMapper.userUpdateRequestDtoToUser(requestDto);
         User user = userService.findByEmail(authentication.getName());
@@ -48,6 +52,7 @@ public class UserController {
         }
         if (userToBeUpdated.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(userToBeUpdated.getPassword()));
+            user.setLastPasswordResetDate(LocalDate.now());
         }
         userService.update(user);
         return userMapper.userToUserDetailsResponseDto(user);
@@ -70,7 +75,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDetailsResponseDto> getAllUsers(@RequestParam Integer page) {
+    public List<UserDetailsResponseDto> getAllUsers(@RequestParam @Valid Integer page) {
         List<User> users = userService.paginatedUserList(page);
         List<UserDetailsResponseDto> responseDtos = new ArrayList<>();
         for (User user : users) {

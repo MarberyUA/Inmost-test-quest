@@ -2,6 +2,9 @@ package com.dev.testquest.security.jwt;
 
 import com.dev.testquest.model.Role;
 import com.dev.testquest.model.User;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +25,7 @@ public class JwtUserFactory {
                 user.getPassword(),
                 user.getEmail(),
                 true,
-                new Date(2020, 6, 30),
+                convertToDateViaInstant(user.getLastPasswordResetDate()),
                 mapToGrantedAuthorities(new ArrayList<>(user.getRoles()))
                 );
     }
@@ -31,5 +34,11 @@ public class JwtUserFactory {
         return userRole.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRoleName().name()))
                 .collect(Collectors.toList());
+    }
+
+    public static Date convertToDateViaInstant(LocalDate dateToConvert) {
+        return java.util.Date.from(dateToConvert.atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant());
     }
 }
