@@ -1,32 +1,31 @@
 package com.dev.testquest.security;
 
 import com.dev.testquest.model.User;
+import com.dev.testquest.security.jwt.JwtUser;
+import com.dev.testquest.security.jwt.JwtUserFactory;
 import com.dev.testquest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomUserDetailsServiceImpl implements UserDetailsService {
+public class JwtUserDetailsServiceImpl implements UserDetailsService {
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public JwtUserDetailsServiceImpl(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
         User user = userService.findByEmail(userEmail);
         if (user == null) {
-            throw new UsernameNotFoundException("Check the entered email or password!");
+            throw new UsernameNotFoundException("Error while getting user!");
         }
-        UserBuilder builder =
-                org.springframework.security.core.userdetails.User.withUsername(userEmail);
-        builder.password(user.getPassword());
-        builder.roles(user.getRoles()
-                .stream()
-                .map(role -> role.getRoleName().toString())
-                .toArray(String[]::new));
-        return builder.build();
+        JwtUser jwtUser = JwtUserFactory.create(user);
+        return jwtUser;
     }
 }
