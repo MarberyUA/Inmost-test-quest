@@ -18,8 +18,7 @@ Test quest requirements:
   "user_id": 1,
   "first_name": "First",
   "last_name": "Last",
-	"email": "example@gmail.com",
-  ...
+  "email": "example@gmail.com",
 }
 ```
 
@@ -54,8 +53,7 @@ Test quest requirements:
   "id": 1,
   "title": "",
   "description": "",
-	"status": "" // ["View", "In Progress", "Done"]
-  ...
+  "status": "" ["View", "In Progress", "Done"]
 }
 ```
 

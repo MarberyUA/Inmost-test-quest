@@ -1,7 +1,13 @@
 package com.dev.testquest.model.dto.request;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class TaskUpdateRequestDto {
+    @NotNull
+    @NotEmpty
     private Long taskId;
+    private String title;
     private String description;
     private String statusName;
     private String userEmail;
@@ -12,6 +18,14 @@ public class TaskUpdateRequestDto {
 
     public void setTaskId(Long taskId) {
         this.taskId = taskId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {

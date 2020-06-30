@@ -1,5 +1,6 @@
 package com.dev.testquest.model;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -26,6 +27,8 @@ public class User {
     @ManyToMany
     @Column(name = "users_roles")
     private Set<Role> roles = new HashSet<>();
+    private LocalDate dateCreation;
+    private LocalDate lastPasswordResetDate;
 
     public User() {
     }
@@ -76,6 +79,22 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public LocalDate getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(LocalDate dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public LocalDate getLastPasswordResetDate() {
+        return lastPasswordResetDate;
+    }
+
+    public void setLastPasswordResetDate(LocalDate lastPasswordResetDate) {
+        this.lastPasswordResetDate = lastPasswordResetDate;
     }
 
     @Override

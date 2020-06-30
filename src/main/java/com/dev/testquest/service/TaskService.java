@@ -1,5 +1,6 @@
 package com.dev.testquest.service;
 
+import com.dev.testquest.model.Status;
 import com.dev.testquest.model.Task;
 import java.util.List;
 
@@ -12,8 +13,14 @@ public interface TaskService {
 
     List<Task> getAll();
 
+    List<Task> getTasksByStatus(Status status);
+
     List<Task> getByUserId(Long id);
 
     Task get(Long id);
+
+    List<Task> getTasksByOldUsers();
+
+    List<Task> getTasksByNewUsers();
 
 }

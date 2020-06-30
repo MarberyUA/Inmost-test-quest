@@ -1,6 +1,7 @@
 package com.dev.testquest.service.impl;
 
 import com.dev.testquest.dao.TaskDao;
+import com.dev.testquest.model.Status;
 import com.dev.testquest.model.Task;
 import com.dev.testquest.model.User;
 import com.dev.testquest.service.StatusService;
@@ -46,6 +47,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public List<Task> getTasksByStatus(Status status) {
+        return taskDao.getTasksByStatus(status);
+    }
+
+    @Override
     public List<Task> getByUserId(Long id) {
         return taskDao.getByUserId(id);
     }
@@ -53,5 +59,15 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task get(Long id) {
         return taskDao.get(id);
+    }
+
+    @Override
+    public List<Task> getTasksByOldUsers() {
+        return taskDao.getTasksByOldUsers();
+    }
+
+    @Override
+    public List<Task> getTasksByNewUsers() {
+        return taskDao.getTasksByNewUsers();
     }
 }
