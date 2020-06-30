@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 public class TaskMapper {
     public Task taskRequestDtoToTask(TaskRequestDto taskRequestDto) {
         Task task = new Task();
+        task.setTitle(taskRequestDto.getTitle());
         task.setDescription(taskRequestDto.getDescription());
         return task;
     }

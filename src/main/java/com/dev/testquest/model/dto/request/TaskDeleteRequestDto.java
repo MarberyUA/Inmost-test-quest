@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 
 public class TaskDeleteRequestDto {
     @NotNull
-    @NotEmpty
     private Long taskId;
 
     public Long getTaskId() {

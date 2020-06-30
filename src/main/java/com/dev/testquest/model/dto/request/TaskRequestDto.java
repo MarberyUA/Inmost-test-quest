@@ -5,10 +5,8 @@ import javax.validation.constraints.NotNull;
 
 public class TaskRequestDto {
     @NotNull
-    @NotEmpty
     private String title;
     @NotNull
-    @NotEmpty
     private String description;
 
     public String getDescription() {

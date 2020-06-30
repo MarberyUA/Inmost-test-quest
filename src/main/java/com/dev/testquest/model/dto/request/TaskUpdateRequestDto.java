@@ -1,11 +1,9 @@
 package com.dev.testquest.model.dto.request;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class TaskUpdateRequestDto {
     @NotNull
-    @NotEmpty
     private Long taskId;
     private String title;
     private String description;
