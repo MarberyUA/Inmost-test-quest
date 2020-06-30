@@ -4,12 +4,11 @@ import com.dev.testquest.model.User;
 import com.dev.testquest.service.AuthenticationService;
 import com.dev.testquest.service.RoleService;
 import com.dev.testquest.service.UserService;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Set;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {

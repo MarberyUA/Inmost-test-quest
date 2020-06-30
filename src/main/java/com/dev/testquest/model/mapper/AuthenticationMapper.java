@@ -6,7 +6,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AuthenticationMapper {
-    public User authenticationRequestDtoToUser(AuthenticationRegisterRequestDto authenticationRequestDto) {
+    public User authenticationRequestDtoToUser(AuthenticationRegisterRequestDto
+                                                       authenticationRequestDto) {
         User user = new User();
         user.setEmail(authenticationRequestDto.getEmail());
         user.setName(authenticationRequestDto.getName());

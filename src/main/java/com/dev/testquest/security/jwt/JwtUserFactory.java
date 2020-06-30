@@ -2,13 +2,12 @@ package com.dev.testquest.security.jwt;
 
 import com.dev.testquest.model.Role;
 import com.dev.testquest.model.User;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 public class JwtUserFactory {
     public JwtUserFactory() {
