@@ -1,16 +1,19 @@
 package com.dev.testquest.controller;
 
+import com.dev.testquest.model.Role;
 import com.dev.testquest.model.User;
 import com.dev.testquest.model.dto.request.UserUpdateRequestDto;
 import com.dev.testquest.model.dto.response.UserDetailsResponseDto;
 import com.dev.testquest.model.mapper.UserMapper;
+import com.dev.testquest.service.RoleService;
 import com.dev.testquest.service.UserService;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -21,8 +24,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/users")
@@ -35,6 +36,18 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleService roleService;
+
+    @PostConstruct
+    public void init() {
+        for (Role.RoleName roleName : Role.RoleName.values()) {
+            Role role = new Role();
+            role.setRoleName(roleName);
+            roleService.add(role);
+        }
+    }
 
     @PostMapping("/update")
     public UserDetailsResponseDto update(@RequestBody @Valid UserUpdateRequestDto requestDto,

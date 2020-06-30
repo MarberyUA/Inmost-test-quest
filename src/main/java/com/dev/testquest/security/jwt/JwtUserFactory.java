@@ -2,7 +2,6 @@ package com.dev.testquest.security.jwt;
 
 import com.dev.testquest.model.Role;
 import com.dev.testquest.model.User;
-
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;

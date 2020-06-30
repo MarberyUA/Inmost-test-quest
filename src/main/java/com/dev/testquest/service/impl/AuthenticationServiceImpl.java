@@ -4,7 +4,6 @@ import com.dev.testquest.model.User;
 import com.dev.testquest.service.AuthenticationService;
 import com.dev.testquest.service.RoleService;
 import com.dev.testquest.service.UserService;
-
 import java.time.LocalDate;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;

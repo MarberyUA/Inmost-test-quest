@@ -1,6 +1,7 @@
 package com.dev.testquest.controller;
 
 import com.dev.testquest.exception.JwtAuthenticationException;
+import com.dev.testquest.model.Role;
 import com.dev.testquest.model.Status;
 import com.dev.testquest.model.Task;
 import com.dev.testquest.model.dto.request.TaskDeleteRequestDto;
@@ -14,21 +15,19 @@ import com.dev.testquest.security.jwt.JwtUser;
 import com.dev.testquest.service.StatusService;
 import com.dev.testquest.service.TaskService;
 import com.dev.testquest.service.UserService;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/tasks")
@@ -47,6 +46,15 @@ public class TaskController {
 
     @Autowired
     private UserService userService;
+
+    @PostConstruct
+    public void init() {
+        for (Status.StatusName statusName : Status.StatusName.values()) {
+            Status status = new Status();
+            status.setStatusName(statusName);
+            statusService.create(status);
+        }
+    }
 
     @PostMapping("/create")
     public TaskResponseDto createTask(@RequestBody @Valid TaskRequestDto taskRequestDto,
@@ -79,7 +87,8 @@ public class TaskController {
     }
 
     @PostMapping("/delete")
-    public TaskDeleteResponseDto delete(@RequestBody @Valid TaskDeleteRequestDto taskDeleteRequestDto,
+    public TaskDeleteResponseDto delete(
+            @RequestBody @Valid TaskDeleteRequestDto taskDeleteRequestDto,
                                         Authentication authentication) {
         Task task = taskService.get(taskDeleteRequestDto.getTaskId());
         isUserHasPermission(task, authentication);
@@ -95,7 +104,7 @@ public class TaskController {
         return responseDtos;
     }
 
-    private void isUserHasPermission (Task task, Authentication authentication) {
+    private void isUserHasPermission(Task task, Authentication authentication) {
         if (!task.getUser().getId().equals(((JwtUser) authentication
                 .getPrincipal()).getId())) {
             throw new JwtAuthenticationException("You do not have access "

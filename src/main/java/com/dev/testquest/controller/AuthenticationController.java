@@ -9,6 +9,7 @@ import com.dev.testquest.service.AuthenticationService;
 import com.dev.testquest.service.UserService;
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

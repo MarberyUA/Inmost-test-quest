@@ -4,7 +4,6 @@ import com.dev.testquest.dao.TaskDao;
 import com.dev.testquest.exception.DataProcessingException;
 import com.dev.testquest.model.Status;
 import com.dev.testquest.model.Task;
-
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
