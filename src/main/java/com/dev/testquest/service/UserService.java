@@ -13,4 +13,6 @@ public interface UserService {
     void delete(User user);
 
     List<User> getAll();
+
+    List<User> paginatedUserList(Integer page);
 }

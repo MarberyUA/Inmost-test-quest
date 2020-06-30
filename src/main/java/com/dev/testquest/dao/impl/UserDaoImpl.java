@@ -105,4 +105,17 @@ public class UserDaoImpl implements UserDao {
             throw new DataProcessingException("Error while getting user via email!", e);
         }
     }
+
+    @Override
+    public List<User> paginatedUserList(Integer page) {
+        try (Session session = sessionFactory.openSession()) {
+            List<User> users = session.createQuery("from User us", User.class)
+                    .setMaxResults(10)
+                    .setFirstResult(page * 10)
+                    .getResultList();
+            return users;
+        } catch (Exception e) {
+            throw new DataProcessingException("Error while getting users from db!", e);
+        }
+    }
 }
