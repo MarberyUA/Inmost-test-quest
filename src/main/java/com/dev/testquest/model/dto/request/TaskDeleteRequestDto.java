@@ -1,6 +1,5 @@
 package com.dev.testquest.model.dto.request;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class TaskDeleteRequestDto {
