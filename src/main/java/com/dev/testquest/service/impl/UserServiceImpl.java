@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getAll() {
         return userDao.getAll();
     }
+
+    @Override
+    public List<User> paginatedUserList(Integer page) {
+        return userDao.paginatedUserList(page);
+    }
 }

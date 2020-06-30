@@ -13,4 +13,6 @@ public interface UserDao {
     void delete(User user);
 
     User findByEmail(String email);
+
+    List<User> paginatedUserList(Integer page);
 }

@@ -106,4 +106,28 @@ public class TaskDaoImpl implements TaskDao {
             throw new DataProcessingException("Error while getting user via email!", e);
         }
     }
+
+    @Override
+    public List<Task> getByUserId(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "FROM Task tk WHERE tk.user.id = :id";
+            Query<Task> query = session.createQuery(hql);
+            query.setParameter("id", id);
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new DataProcessingException("Error while getting task by user id", e);
+        }
+    }
+
+    @Override
+    public Task get(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "FROM Task tk WHERE tk.id = :id";
+            Query<Task> query = session.createQuery(hql);
+            query.setParameter("id", id);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            throw new DataProcessingException("Error while getting task by id", e);
+        }
+    }
 }

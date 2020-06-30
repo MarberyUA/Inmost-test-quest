@@ -97,12 +97,25 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByEmail(String email) {
         try (Session session = sessionFactory.openSession()) {
-            String hql = "FROM User us WHERE us.email = :email";
+            String hql = "FROM User us JOIN fetch us.roles WHERE us.email = :email";
             Query<User> query = session.createQuery(hql);
             query.setParameter("email", email);
             return query.uniqueResult();
         } catch (Exception e) {
             throw new DataProcessingException("Error while getting user via email!", e);
+        }
+    }
+
+    @Override
+    public List<User> paginatedUserList(Integer page) {
+        try (Session session = sessionFactory.openSession()) {
+            List<User> users = session.createQuery("from User us", User.class)
+                    .setMaxResults(10)
+                    .setFirstResult(page * 10)
+                    .getResultList();
+            return users;
+        } catch (Exception e) {
+            throw new DataProcessingException("Error while getting users from db!", e);
         }
     }
 }

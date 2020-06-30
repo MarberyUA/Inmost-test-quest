@@ -44,4 +44,14 @@ public class TaskServiceImpl implements TaskService {
     public List<Task> getAll() {
         return taskDao.getAll();
     }
+
+    @Override
+    public List<Task> getByUserId(Long id) {
+        return taskDao.getByUserId(id);
+    }
+
+    @Override
+    public Task get(Long id) {
+        return taskDao.get(id);
+    }
 }

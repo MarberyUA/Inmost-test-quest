@@ -14,4 +14,8 @@ public interface TaskDao {
     List<Task> getAll();
 
     List<Task> getTasksByStatus(Status status);
+
+    List<Task> getByUserId(Long id);
+
+    Task get(Long id);
 }
