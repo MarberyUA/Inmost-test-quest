@@ -1,7 +1,6 @@
 package com.dev.testquest.controller;
 
 import com.dev.testquest.exception.JwtAuthenticationException;
-import com.dev.testquest.model.Role;
 import com.dev.testquest.model.Status;
 import com.dev.testquest.model.Task;
 import com.dev.testquest.model.dto.request.TaskDeleteRequestDto;
